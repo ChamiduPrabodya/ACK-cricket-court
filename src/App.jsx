@@ -1,5 +1,5 @@
-import Home from "./pages/Home.jsx";
+import Router from "./pages/Router.jsx";
 
 export default function App() {
-  return <Home />;
+  return <Router />;
 }

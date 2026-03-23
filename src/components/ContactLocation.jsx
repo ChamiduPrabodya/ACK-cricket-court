@@ -32,7 +32,7 @@ export default function ContactLocation() {
             Whether you're a beginner or a professional, our facility caters to all skill levels.
             Perfect for individual practice, team training, or friendly matches.
           </p>
-          <a className="btn btnPrimary" href="#login">
+          <a className="btn btnPrimary" href="#/login">
             Login to Book
           </a>
         </div>
@@ -69,4 +69,3 @@ export default function ContactLocation() {
     </footer>
   );
 }
-
