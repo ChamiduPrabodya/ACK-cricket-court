@@ -9,7 +9,7 @@ export default function Hero() {
             Premium indoor cricket facility with state-of-the-art equipment. Book your slot for
             practice sessions, matches, or corporate events.
           </p>
-          <a className="btn btnPrimary" href="#login">
+          <a className="btn btnPrimary" href="#/login">
             Login to Book
           </a>
         </div>
@@ -17,4 +17,3 @@ export default function Hero() {
     </section>
   );
 }
-

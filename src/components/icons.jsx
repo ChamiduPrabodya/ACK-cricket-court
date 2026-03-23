@@ -99,3 +99,41 @@ export function IconStar(props) {
   );
 }
 
+export function IconCalendar(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        d="M7 3v3M17 3v3M4 8h16M6 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"
+      />
+    </svg>
+  );
+}
+
+export function IconArrowRight(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        d="M10 6l6 6-6 6M4 12h12"
+      />
+    </svg>
+  );
+}
+
+export function IconUserPlus(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        d="M15 19c0-2.2-2.2-4-5-4s-5 1.8-5 4M10 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19 8v6M16 11h6"
+      />
+    </svg>
+  );
+}
