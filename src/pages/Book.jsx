@@ -46,7 +46,7 @@ export default function Book() {
   const slots = useMemo(() => buildSlots(), []);
   const [date, setDate] = useState(todayISO());
   const [selected, setSelected] = useState([]);
-  const [hint, setHint] = useState("");
+  const [toast, setToast] = useState("");
 
   const selectedRange = useMemo(() => {
     if (selected.length === 0) return null;
@@ -60,8 +60,22 @@ export default function Book() {
 
   const canConfirm = Boolean(date) && selectedHours > 0;
 
+  const selectedSlotLabels = useMemo(() => {
+    if (!selectedRange) return [];
+    const out = [];
+    for (let idx = selectedRange.startIdx; idx <= selectedRange.endIdx; idx += 1) {
+      out.push(formatSlotLabel(slots[idx]));
+    }
+    return out;
+  }, [selectedRange, slots]);
+
+  function showToast(message) {
+    setToast(message);
+    window.clearTimeout(showToast._t);
+    showToast._t = window.setTimeout(() => setToast(""), 3200);
+  }
+
   function onToggleSlot(idx) {
-    setHint("");
     setSelected((prev) => {
       if (prev.includes(idx)) {
         if (prev.length === 1) return [];
@@ -75,8 +89,8 @@ export default function Book() {
       if (idx === max + 1) return [...sorted, idx];
       if (idx === min - 1) return [idx, ...sorted];
 
-      setHint("Slots must be consecutive. Click a slot to start a new selection.");
-      return [idx];
+      showToast("Please select consecutive time slots only");
+      return prev;
     });
   }
 
@@ -141,7 +155,12 @@ export default function Book() {
               />
             </div>
 
-            <div className="slotsHeader">Time Slots (Select consecutive slots)</div>
+            <div className="slotsHeaderRow">
+              <div className="slotsHeader">Time Slots (Select consecutive slots)</div>
+              {selectedHours > 0 ? (
+                <div className="slotsCount">{selectedHours} slots selected</div>
+              ) : null}
+            </div>
             <div className="timeGrid" role="list">
               {slots.map((startHour, idx) => {
                 const isSelected = selected.includes(idx);
@@ -158,23 +177,26 @@ export default function Book() {
                 );
               })}
             </div>
-            {hint ? <div className="slotHint">{hint}</div> : null}
           </div>
 
           <aside className="card summaryCard">
             <h2 className="cardTitle">Booking Summary</h2>
-            <div className="summaryLine">
-              <span>Date</span>
-              <span className="summaryValue">{date || "-"}</span>
-            </div>
-            <div className="summaryLine">
-              <span>Time</span>
-              <span className="summaryValue">
-                {selectedStartHour == null
-                  ? "-"
-                  : formatRange(selectedStartHour, selectedEndHour).replace(" - ", " → ")}
-                {selectedStartHour == null ? "" : selectedHours > 1 ? ` (${selectedHours} hrs)` : " (1 hr)"}
-              </span>
+            <div className="summaryBlock">
+              <div className="summaryLabel">Selected Time Slots</div>
+              <div className="summarySlots">
+                {selectedSlotLabels.length === 0 ? (
+                  <div className="summaryEmpty">Select time slots to continue</div>
+                ) : (
+                  selectedSlotLabels.map((s) => (
+                    <div className="summarySlot" key={s}>
+                      {s}
+                    </div>
+                  ))
+                )}
+              </div>
+              <div className="summaryTotal">
+                Total: {selectedHours === 0 ? "-" : `${selectedHours} hour${selectedHours === 1 ? "" : "s"}`}
+              </div>
             </div>
             <button
               className={`btn authBtn ${canConfirm ? "btnPrimary" : "btnDisabled"}`}
@@ -206,6 +228,14 @@ export default function Book() {
           </div>
         </div>
       </div>
+      {toast ? (
+        <div className="toast" role="status" aria-live="polite">
+          <div className="toastIcon" aria-hidden="true">
+            !
+          </div>
+          <div className="toastText">{toast}</div>
+        </div>
+      ) : null}
     </div>
   );
 }
