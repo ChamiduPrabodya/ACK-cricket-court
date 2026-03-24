@@ -41,6 +41,22 @@ function todayISO() {
   return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
 }
 
+function isWeekday(dateISO) {
+  const d = new Date(`${dateISO}T00:00:00`);
+  const day = d.getDay(); // 0 Sun ... 6 Sat
+  return day >= 1 && day <= 5;
+}
+
+function computePricing({ dateISO, startHour, endHour, hours }) {
+  const anyNight = startHour < 7 || endHour > 18;
+  if (anyNight) return { rate: 2500, label: "Indoor Court (with lights)" };
+
+  const inPromoWindow = startHour >= 7 && endHour <= 18 && isWeekday(dateISO);
+  if (inPromoWindow) return { rate: 1500, label: "Indoor Court (without lights)" };
+
+  return { rate: 2000, label: "Indoor Court (without lights)" };
+}
+
 export default function Book() {
   const user = getUser();
   const slots = useMemo(() => buildSlots(), []);
@@ -96,6 +112,13 @@ export default function Book() {
 
   function confirm() {
     if (!canConfirm) return;
+    const pricing = computePricing({
+      dateISO: date,
+      startHour: selectedStartHour,
+      endHour: selectedEndHour,
+      hours: selectedHours
+    });
+    const total = pricing.rate * selectedHours;
     const booking = {
       id: crypto?.randomUUID?.() ?? String(Date.now()),
       createdAt: new Date().toISOString(),
@@ -105,7 +128,8 @@ export default function Book() {
       date,
       startHour: selectedStartHour,
       endHour: selectedEndHour,
-      hours: selectedHours
+      hours: selectedHours,
+      pricing: { currency: "LKR", rate: pricing.rate, total, label: pricing.label }
     };
     addBooking(booking);
     go("/my-bookings");

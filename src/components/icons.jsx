@@ -210,3 +210,35 @@ export function IconInfo(props) {
     </svg>
   );
 }
+
+export function IconUser(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"
+      />
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        d="M4 21a8 8 0 0 1 16 0"
+      />
+    </svg>
+  );
+}
+
+export function IconTrash(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" {...props}>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m-9 0 1 14h10l1-14M10 11v7M14 11v7"
+      />
+    </svg>
+  );
+}
