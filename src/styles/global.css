@@ -43,6 +43,12 @@ img{ max-width:100%; display:block; }
   box-shadow: 0 12px 25px rgba(0,166,81,0.25);
 }
 .btnPrimary:hover{ background:var(--green-700); }
+.btnDisabled{
+  background: #d1d5db;
+  color: #6b7280;
+  box-shadow: none;
+  cursor:not-allowed;
+}
 
 /* Navbar */
 .navWrap{
@@ -122,6 +128,193 @@ img{ max-width:100%; display:block; }
 .navBtnPrimary:hover{
   background: var(--green-700);
   border-color: var(--green-700);
+}
+
+/* User menu */
+.userMenu{ position: relative; }
+.userMenu summary{ list-style: none; }
+.userMenu summary::-webkit-details-marker{ display:none; }
+.userChip{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: #f8fafc;
+  cursor:pointer;
+  user-select:none;
+}
+.userAvatar{
+  width:40px;
+  height:40px;
+  border-radius: 999px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  background: radial-gradient(circle at 30% 30%, #7c3aed, #2563eb);
+}
+.userMeta{ display:grid; line-height:1.05; }
+.userName{ font-weight:900; }
+.userRole{ font-size: 12px; color: var(--muted); margin-top:4px; }
+.userChevron{ color: #334155; opacity: 0.9; }
+.userDrop{
+  position:absolute;
+  right:0;
+  top: calc(100% + 10px);
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 10px;
+  min-width: 160px;
+}
+.userDropBtn{
+  width:100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+.userDropBtn:hover{ background:#f1f5f9; }
+
+/* Booking */
+.bookingPage{ background: #f6fbff; }
+.bookingHero{
+  background: linear-gradient(180deg, #e8f6ff 0%, #f6fbff 70%, #f6fbff 100%);
+  border-bottom: 1px solid #dbeafe;
+  padding: 62px 0 34px;
+}
+.bookingHeroSmall{ padding: 46px 0 28px; }
+.bookingHeroInner{ text-align:center; }
+.bookingTitle{
+  margin:0;
+  font-size: 54px;
+  letter-spacing: -0.5px;
+}
+.bookingSub{
+  margin: 10px 0 0;
+  color: #475569;
+  font-size: 18px;
+}
+.bookingBody{ padding: 22px 0 74px; }
+.infoBox{
+  display:flex;
+  gap:14px;
+  background: #eef6ff;
+  border:1px solid #bfdbfe;
+  border-radius: 16px;
+  padding: 18px 18px;
+  margin: 0 0 26px;
+}
+.infoIcon{
+  width:40px;
+  height:40px;
+  border-radius: 12px;
+  display:grid;
+  place-items:center;
+  color: #2563eb;
+  background: rgba(37,99,235,0.08);
+  flex: 0 0 auto;
+}
+.infoTitle{ font-weight: 900; margin-bottom: 6px; }
+.infoText{ color: #334155; line-height: 1.55; }
+.bookingGrid{
+  display:grid;
+  grid-template-columns: 1.6fr 0.9fr;
+  gap: 26px;
+  align-items:start;
+}
+.card{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(15,23,42,0.06);
+  padding: 28px 28px;
+}
+.cardTitle{ margin:0 0 18px; font-size: 32px; letter-spacing:-0.2px; }
+.fieldRow{ display:grid; gap:10px; margin-bottom: 24px; }
+.labelRow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+}
+.bookingDate{ background:#f3f4f6; }
+.slotsHeader{ font-weight:900; margin: 8px 0 14px; }
+.timeGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.slotBtn{
+  height: 52px;
+  border-radius: 14px;
+  border:1px solid #e2e8f0;
+  background:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+.slotBtn:hover{ border-color:#cbd5e1; background:#f8fafc; }
+.slotBtnSelected{
+  border-color: rgba(0,166,81,0.6);
+  background: rgba(0,166,81,0.10);
+  color: #0f172a;
+}
+.slotHint{ margin-top: 12px; color:#ef4444; font-weight:700; }
+
+.summaryCard{ position: sticky; top: 92px; }
+.summaryLine{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  padding: 10px 0;
+  color: #334155;
+  border-bottom: 1px dashed #e5e7eb;
+}
+.summaryLine:last-of-type{ border-bottom:none; }
+.summaryValue{ font-weight:900; text-align:right; }
+.summaryNote{ margin-top: 16px; color: #64748b; text-align:center; }
+.contactCard{ margin-top: 26px; }
+.contactGridSmall{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.bookingList{ display:grid; gap: 12px; }
+.bookingItem{
+  border:1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 16px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 14px;
+}
+.bookingItemTitle{ font-weight: 900; font-size: 18px; }
+.bookingItemSub{ color: #64748b; margin-top: 6px; }
+.bookingItemMeta{
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(0,166,81,0.10);
+  border:1px solid rgba(0,166,81,0.22);
+  font-weight: 900;
+  white-space:nowrap;
+}
+.emptyState{ padding: 18px 0; text-align:center; }
+.emptyTitle{ font-weight: 900; font-size: 20px; }
+.emptySub{ color: var(--muted); margin-top: 8px; }
+
+@media (max-width: 980px){
+  .bookingTitle{ font-size: 42px; }
+  .bookingGrid{ grid-template-columns: 1fr; }
+  .summaryCard{ position: static; }
+  .contactGridSmall{ grid-template-columns: 1fr; }
+  .timeGrid{ grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Hero */
@@ -430,16 +623,18 @@ img{ max-width:100%; display:block; }
 .authBg{
   min-height: calc(100vh - 72px);
   background:
-    radial-gradient(1200px 600px at 15% 10%, rgba(59,130,246,0.20), transparent 60%),
-    radial-gradient(900px 500px at 90% 20%, rgba(99,102,241,0.16), transparent 60%),
-    #f3f7ff;
+    radial-gradient(1000px 520px at 50% 0%, rgba(59,130,246,0.22), transparent 62%),
+    radial-gradient(900px 520px at 12% 24%, rgba(14,165,233,0.14), transparent 64%),
+    radial-gradient(900px 520px at 88% 28%, rgba(99,102,241,0.16), transparent 62%),
+    linear-gradient(180deg, #eef6ff 0%, #f7fbff 55%, #ffffff 100%);
   display:flex;
 }
 .authBgPink{
   background:
-    radial-gradient(1200px 600px at 15% 10%, rgba(236,72,153,0.16), transparent 60%),
-    radial-gradient(900px 500px at 90% 20%, rgba(168,85,247,0.14), transparent 60%),
-    #fbf4ff;
+    radial-gradient(1000px 520px at 50% 0%, rgba(236,72,153,0.18), transparent 62%),
+    radial-gradient(900px 520px at 18% 24%, rgba(168,85,247,0.16), transparent 64%),
+    radial-gradient(900px 520px at 86% 28%, rgba(59,130,246,0.10), transparent 62%),
+    linear-gradient(180deg, #fff1f7 0%, #fbf4ff 55%, #ffffff 100%);
 }
 .authWrap{
   padding: 70px 0 90px;

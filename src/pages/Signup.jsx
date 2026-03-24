@@ -1,7 +1,9 @@
 import Navbar from "../components/Navbar.jsx";
 import { IconCalendar, IconUserPlus } from "../components/icons.jsx";
+import { setUser } from "../services/auth.js";
+import { go } from "../services/hashRoute.js";
 
-export default function Signup() {
+export default function Signup({ returnTo = "/" }) {
   return (
     <div className="authPage">
       <Navbar />
@@ -18,27 +20,48 @@ export default function Signup() {
               className="authForm"
               onSubmit={(e) => {
                 e.preventDefault();
+                const form = new FormData(e.currentTarget);
+                const name = String(form.get("name") || "").trim();
+                const email = String(form.get("email") || "").trim();
+                const phone = String(form.get("phone") || "").trim();
+                const password = String(form.get("password") || "");
+                if (!name || !email || !password) return;
+                setUser({ name, email, phone });
+                go(returnTo);
               }}
             >
               <label className="field">
                 <span className="fieldLabel">Full Name</span>
-                <input className="fieldInput" type="text" placeholder="John Doe" required />
+                <input
+                  className="fieldInput"
+                  name="name"
+                  type="text"
+                  placeholder="John Silva"
+                  required
+                />
               </label>
 
               <label className="field">
                 <span className="fieldLabel">Email</span>
-                <input className="fieldInput" type="email" placeholder="your@email.com" required />
+                <input
+                  className="fieldInput"
+                  name="email"
+                  type="email"
+                  placeholder="john.silva@gmail.com"
+                  required
+                />
               </label>
 
               <label className="field">
                 <span className="fieldLabel">Phone Number</span>
-                <input className="fieldInput" type="tel" placeholder="+94 XX XXX XXXX" />
+                <input className="fieldInput" name="phone" type="tel" placeholder="+94 77 123 4567" />
               </label>
 
               <label className="field">
                 <span className="fieldLabel">Password</span>
                 <input
                   className="fieldInput"
+                  name="password"
                   type="password"
                   placeholder="********"
                   minLength={6}
@@ -55,7 +78,7 @@ export default function Signup() {
 
             <div className="authFoot">
               Already have an account?{" "}
-              <a className="authLink" href="#/login">
+              <a className="authLink" href={`#/login?returnTo=${encodeURIComponent(returnTo)}`}>
                 Sign in
               </a>
             </div>
