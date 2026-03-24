@@ -477,6 +477,40 @@ img{ max-width:100%; display:block; }
 }
 .toastText{ font-weight: 800; color:#0f172a; }
 
+/* App footer */
+.appFooter{
+  border-top: 1px solid #e5e7eb;
+  background: #0b1424;
+  color: rgba(255,255,255,0.92);
+  padding: 22px 0;
+}
+.footerInner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+}
+.footerBrand{ font-weight: 800; }
+.footerSub{ color: rgba(255,255,255,0.72); margin-top: 6px; font-size: 14px; }
+.footerRight{
+  display:flex;
+  align-items:center;
+  gap: 16px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.footerLink{
+  color: rgba(255,255,255,0.88);
+  font-weight: 700;
+}
+.footerLink:hover{ text-decoration: underline; }
+.footerCopy{ color: rgba(255,255,255,0.62); font-size: 14px; }
+
+@media (max-width: 640px){
+  .footerInner{ flex-direction:column; align-items:flex-start; }
+  .footerRight{ justify-content:flex-start; }
+}
+
 /* Hero */
 .hero{
   height: 520px;

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 import { IconCalendar, IconClock, IconMail, IconPhone, IconTrash, IconUser } from "../components/icons.jsx";
 import { getUser } from "../services/auth.js";
 import { listBookingsForEmail, removeBooking } from "../services/bookings.js";
@@ -265,6 +266,7 @@ export default function MyBookings() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

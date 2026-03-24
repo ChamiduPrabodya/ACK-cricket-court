@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 import { getUser } from "../services/auth.js";
 import { addBooking } from "../services/bookings.js";
 import { go } from "../services/hashRoute.js";
@@ -252,6 +253,7 @@ export default function Book() {
           </div>
         </div>
       </div>
+      <Footer />
       {toast ? (
         <div className="toast" role="status" aria-live="polite">
           <div className="toastIcon" aria-hidden="true">
