@@ -1,33 +1,41 @@
 import { useEffect, useMemo, useState } from "react";
+import { getUser } from "../services/auth.js";
+import { parseHash } from "../services/hashRoute.js";
+import Book from "./Book.jsx";
 import Home from "./Home.jsx";
 import Login from "./Login.jsx";
+import MyBookings from "./MyBookings.jsx";
 import Signup from "./Signup.jsx";
 
-function getRouteFromHash() {
-  const hash = window.location.hash || "#/";
-  const route = hash.startsWith("#/") ? hash.slice(1) : "/";
-  return route === "" ? "/" : route;
-}
-
 export default function Router() {
-  const [route, setRoute] = useState(getRouteFromHash());
+  const [{ path, params }, setRoute] = useState(() => parseHash());
 
   useEffect(() => {
-    const onHashChange = () => setRoute(getRouteFromHash());
+    const onHashChange = () => setRoute(parseHash());
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [route]);
+  }, [path]);
 
   const element = useMemo(() => {
-    if (route === "/") return <Home />;
-    if (route === "/login") return <Login />;
-    if (route === "/signup") return <Signup />;
+    const user = getUser();
+    const protectedPaths = new Set(["/book", "/my-bookings"]);
+    if (protectedPaths.has(path) && !user) {
+      const returnTo = encodeURIComponent(path);
+      window.location.hash = `#/login?returnTo=${returnTo}`;
+      return null;
+    }
+
+    if (path === "/") return <Home />;
+    if (path === "/login") return <Login returnTo={params.get("returnTo") || "/"} />;
+    if (path === "/signup") return <Signup returnTo={params.get("returnTo") || "/"} />;
+    if (path === "/book") return <Book />;
+    if (path === "/my-bookings") return <MyBookings />;
     return <Home />;
-  }, [route]);
+  }, [path, params]);
 
   return element;
 }
