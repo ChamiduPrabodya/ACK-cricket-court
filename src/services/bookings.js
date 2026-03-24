@@ -20,3 +20,9 @@ export function listBookingsForEmail(email) {
   return listBookings().filter((b) => b?.userEmail === email);
 }
 
+export function removeBooking(id) {
+  const all = listBookings();
+  const next = all.filter((b) => b?.id !== id);
+  localStorage.setItem(KEY, JSON.stringify(next));
+  window.dispatchEvent(new Event("ack:bookings"));
+}
