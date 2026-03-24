@@ -45,21 +45,21 @@ export default function Navbar() {
 
   return (
     <header className="navWrap">
-      <div className="container nav">
+      <div className="navContainer nav">
         <Logo />
         <nav className="navActions" aria-label="Primary">
-          <a className={`navBtn ${route === "/" ? "navBtnActive" : ""}`} href="#/">
+          <a className={`navLink ${route === "/" ? "navLinkActive" : ""}`} href="#/">
             <IconHome className="navBtnIcon" />
             Home
           </a>
           {user ? (
             <>
-              <a className={`navBtn ${route === "/book" ? "navBtnActive" : ""}`} href="#/book">
+              <a className={`navLink ${route === "/book" ? "navLinkActive" : ""}`} href="#/book">
                 <IconBook className="navBtnIcon" />
                 Book Now
               </a>
               <a
-                className={`navBtn ${route === "/my-bookings" ? "navBtnActive" : ""}`}
+                className={`navLink ${route === "/my-bookings" ? "navLinkActive" : ""}`}
                 href="#/my-bookings"
               >
                 <IconList className="navBtnIcon" />

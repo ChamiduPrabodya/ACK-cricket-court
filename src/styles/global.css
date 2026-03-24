@@ -25,6 +25,12 @@ img{ max-width:100%; display:block; }
   margin-inline:auto;
 }
 
+.navContainer{
+  width: 100%;
+  padding-inline: 24px;
+  margin-inline: auto;
+}
+
 .btn{
   display:inline-flex;
   align-items:center;
@@ -120,6 +126,25 @@ img{ max-width:100%; display:block; }
   border-color: var(--green);
   color:#fff;
 }
+
+/* Logged-in nav links (match screenshot) */
+.navLink{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 18px;
+  border-radius:16px;
+  border:1px solid transparent;
+  background: transparent;
+  color:#334155;
+  font-weight:700;
+}
+.navLink:hover{ background:#f1f5f9; }
+.navLinkActive{
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(0,166,81,0.10);
+}
 .navBtnPrimary{
   background: var(--green);
   border-color: var(--green);
@@ -140,8 +165,8 @@ img{ max-width:100%; display:block; }
   gap:12px;
   padding: 10px 14px;
   border-radius: 16px;
-  border: 1px solid var(--line);
-  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  background: #f3f4f6;
   cursor:pointer;
   user-select:none;
 }
@@ -179,6 +204,10 @@ img{ max-width:100%; display:block; }
   cursor:pointer;
 }
 .userDropBtn:hover{ background:#f1f5f9; }
+
+@media (max-width: 640px){
+  .navLink{ padding: 10px 12px; }
+}
 
 /* Booking */
 .bookingPage{ background: #f6fbff; }
@@ -608,6 +637,7 @@ img{ max-width:100%; display:block; }
 
 @media (max-width: 640px){
   .container{ width: calc(100% - 32px); }
+  .navContainer{ padding-inline: 16px; }
   .navLogo{ min-width: unset; }
   .navTitle{ font-size: 18px; }
   .navActions{ gap:8px; }
