@@ -5,6 +5,7 @@ import Book from "./Book.jsx";
 import Home from "./Home.jsx";
 import Login from "./Login.jsx";
 import MyBookings from "./MyBookings.jsx";
+import Profile from "./Profile.jsx";
 import Signup from "./Signup.jsx";
 
 export default function Router() {
@@ -22,7 +23,7 @@ export default function Router() {
 
   const element = useMemo(() => {
     const user = getUser();
-    const protectedPaths = new Set(["/book", "/my-bookings"]);
+    const protectedPaths = new Set(["/book", "/my-bookings", "/profile"]);
     if (protectedPaths.has(path) && !user) {
       const returnTo = encodeURIComponent(path);
       window.location.hash = `#/login?returnTo=${returnTo}`;
@@ -34,6 +35,7 @@ export default function Router() {
     if (path === "/signup") return <Signup returnTo={params.get("returnTo") || "/"} />;
     if (path === "/book") return <Book />;
     if (path === "/my-bookings") return <MyBookings />;
+    if (path === "/profile") return <Profile />;
     return <Home />;
   }, [path, params]);
 

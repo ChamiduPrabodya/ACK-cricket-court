@@ -26,7 +26,7 @@ export default function Signup({ returnTo = "/" }) {
                 const phone = String(form.get("phone") || "").trim();
                 const password = String(form.get("password") || "");
                 if (!name || !email || !password) return;
-                setUser({ name, email, phone });
+                setUser({ id: "user-001", role: "User", name, email, phone });
                 go(returnTo);
               }}
             >

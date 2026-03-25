@@ -30,7 +30,7 @@ export default function Login({ returnTo = "/" }) {
                 const email = String(form.get("email") || "").trim();
                 const password = String(form.get("password") || "");
                 if (!email || !password) return;
-                setUser({ name: nameFromEmail(email), email, phone: "" });
+                setUser({ id: "user-001", role: "User", name: nameFromEmail(email), email, phone: "" });
                 go(returnTo);
               }}
             >

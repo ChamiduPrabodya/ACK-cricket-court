@@ -189,21 +189,34 @@ img{ max-width:100%; display:block; }
   top: calc(100% + 10px);
   background:#fff;
   border:1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 16px;
   box-shadow: var(--shadow);
   padding: 10px;
-  min-width: 160px;
+  min-width: 240px;
 }
-.userDropBtn{
+.userDropSep{
+  height:1px;
+  background: var(--line);
+  margin: 8px 6px;
+}
+.userDropItem{
   width:100%;
-  padding: 10px 12px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding: 12px 12px;
   border-radius: 12px;
-  border:1px solid var(--line);
-  background:#fff;
-  font-weight:800;
+  border: 0;
+  background: transparent;
+  color: #0f172a;
+  font-weight: 850;
   cursor:pointer;
+  text-align:left;
 }
-.userDropBtn:hover{ background:#f1f5f9; }
+.userDropItem:hover{ background:#f1f5f9; }
+.userDropItemDanger{ color: #dc2626; }
+.userDropItemDanger:hover{ background: rgba(220,38,38,0.08); }
+.userDropItem svg{ flex: 0 0 auto; opacity: 0.95; }
 
 @media (max-width: 640px){
   .navLink{ padding: 10px 12px; }
@@ -950,4 +963,148 @@ img{ max-width:100%; display:block; }
   .authWrap{ padding: 46px 0 66px; }
   .authCard{ padding: 34px 22px 28px; }
   .authTitle{ font-size: 36px; }
+}
+
+/* Profile */
+.profilePage .navWrap{ position:sticky; }
+.profileBg{
+  min-height: calc(100vh - 72px);
+  background:
+    radial-gradient(1000px 520px at 50% 0%, rgba(14,165,233,0.14), transparent 62%),
+    radial-gradient(900px 520px at 18% 22%, rgba(34,197,94,0.10), transparent 64%),
+    linear-gradient(180deg, #eaf6ff 0%, #f6fbff 55%, #ffffff 100%);
+}
+.profileWrap{ padding: 56px 0 90px; }
+.profileHeader{ text-align:center; margin-bottom: 26px; }
+.profileHeroIcon{
+  width: 84px;
+  height: 84px;
+  border-radius: 999px;
+  margin: 0 auto 16px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  background: linear-gradient(180deg, #06b6d4, #0ea5a3);
+  box-shadow: 0 18px 36px rgba(6,182,212,0.22);
+}
+.profileHeroIcon svg{ width: 34px; height: 34px; }
+.profileTitle{
+  margin: 0;
+  font-size: 54px;
+  letter-spacing: -0.6px;
+}
+.profileSub{
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+.profileCard{
+  width: min(920px, 100%);
+  margin: 0 auto;
+  background:#fff;
+  border:1px solid #dbeafe;
+  border-radius: 18px;
+  box-shadow: 0 18px 55px rgba(15,23,42,0.10);
+  padding: 28px 34px 30px;
+}
+.profileSummary{
+  background: #ecfeff;
+  border: 1px solid #c7f9ff;
+  border-radius: 16px;
+  padding: 22px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+.profileSummaryItem{ display:grid; gap:6px; }
+.profileSummaryItemRight{ text-align:right; }
+.profileSummaryLabel{ color: var(--muted); font-weight: 850; }
+.profileSummaryValue{ font-weight: 900; letter-spacing: 0.2px; }
+.rolePill{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,166,81,0.22);
+  background: rgba(0,166,81,0.10);
+  color: #0f172a;
+  font-weight: 900;
+  justify-content:flex-end;
+}
+.profileForm{ display:grid; gap: 18px; }
+.profileCard .fieldInput{
+  background: #fff;
+  border-color: #e5e7eb;
+}
+.fieldInputIconWrap{ position:relative; display:block; }
+.fieldIcon{
+  position:absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events:none;
+  display:grid;
+  place-items:center;
+}
+.fieldInputWithIcon{ padding-left: 46px; }
+.profileActions{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  margin-top: 6px;
+}
+.profileSave{
+  flex: 1;
+  height: 56px;
+  border-radius: 14px;
+  font-size: 18px;
+}
+.profileReset{
+  height: 56px;
+  border-radius: 14px;
+  padding-inline: 22px;
+  border:1px solid #d1d5db;
+  background:#fff;
+  color:#0f172a;
+  box-shadow: none;
+}
+.profileReset:hover{ background:#f8fafc; border-color:#cbd5e1; }
+.profileNote{
+  margin-top: 16px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  padding: 16px 18px 14px;
+  color: #1d4ed8;
+}
+.profileNoteTitle{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 950;
+  margin-bottom: 10px;
+}
+.profileNoteList{
+  margin: 0;
+  padding-left: 22px;
+  display:grid;
+  gap: 8px;
+  color: #1d4ed8;
+  font-weight: 650;
+}
+
+@media (max-width: 640px){
+  .profileWrap{ padding: 42px 0 70px; }
+  .profileHeroIcon{ width: 72px; height: 72px; margin-bottom: 12px; }
+  .profileHeroIcon svg{ width: 30px; height: 30px; }
+  .profileTitle{ font-size: 40px; }
+  .profileCard{ padding: 22px 18px 22px; }
+  .profileSummary{ padding: 18px 16px; flex-direction: column; align-items: stretch; }
+  .profileSummaryItemRight{ text-align:left; }
+  .profileActions{ flex-direction: column; align-items: stretch; }
+  .profileReset{ width:100%; }
 }

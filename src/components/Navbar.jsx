@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { clearUser, getUser } from "../services/auth.js";
 import { go } from "../services/hashRoute.js";
-import { IconBook, IconChevronDown, IconHome, IconList, IconUserCircle } from "./icons.jsx";
+import {
+  IconBook,
+  IconChevronDown,
+  IconHome,
+  IconList,
+  IconLogout,
+  IconUser,
+  IconUserCircle,
+} from "./icons.jsx";
 
 function getRouteFromHash() {
   const hash = window.location.hash || "#/";
@@ -78,14 +86,27 @@ export default function Navbar() {
                   <IconChevronDown className="userChevron" />
                 </summary>
                 <div className="userDrop">
+                  <a
+                    className="userDropItem"
+                    href="#/profile"
+                    onClick={(e) => {
+                      e.currentTarget.closest("details")?.removeAttribute("open");
+                    }}
+                  >
+                    <IconUser />
+                    My Profile
+                  </a>
+                  <div className="userDropSep" role="separator" aria-hidden="true" />
                   <button
                     type="button"
-                    className="userDropBtn"
-                    onClick={() => {
+                    className="userDropItem userDropItemDanger"
+                    onClick={(e) => {
+                      e.currentTarget.closest("details")?.removeAttribute("open");
                       clearUser();
                       go("/login");
                     }}
                   >
+                    <IconLogout />
                     Logout
                   </button>
                 </div>
