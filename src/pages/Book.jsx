@@ -48,6 +48,18 @@ function isWeekday(dateISO) {
   return day >= 1 && day <= 5;
 }
 
+function formatMoneyLKR(value) {
+  const n = Number(value || 0);
+  return `Rs. ${n.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
+}
+
+function formatLongDate(dateISO) {
+  if (!dateISO) return "-";
+  const d = new Date(`${dateISO}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return "-";
+  return d.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+}
+
 function computePricing({ dateISO, startHour, endHour, hours }) {
   const anyNight = startHour < 7 || endHour > 18;
   if (anyNight) return { rate: 2500, label: "Indoor Court (with lights)" };
@@ -76,6 +88,18 @@ export default function Book() {
   const selectedEndHour = selectedRange ? slots[selectedRange.endIdx] + 1 : null;
 
   const canConfirm = Boolean(date) && selectedHours > 0;
+
+  const pricing = useMemo(() => {
+    if (!date || selectedHours === 0 || selectedStartHour == null || selectedEndHour == null) return null;
+    return computePricing({
+      dateISO: date,
+      startHour: selectedStartHour,
+      endHour: selectedEndHour,
+      hours: selectedHours
+    });
+  }, [date, selectedHours, selectedStartHour, selectedEndHour]);
+
+  const totalPrice = pricing ? pricing.rate * selectedHours : 0;
 
   const selectedSlotLabels = useMemo(() => {
     if (!selectedRange) return [];
@@ -207,6 +231,10 @@ export default function Book() {
           <aside className="card summaryCard">
             <h2 className="cardTitle">Booking Summary</h2>
             <div className="summaryBlock">
+              <div className="summaryLabel">Date</div>
+              <div className="summaryDateValue">{formatLongDate(date)}</div>
+            </div>
+            <div className="summaryBlock">
               <div className="summaryLabel">Selected Time Slots</div>
               <div className="summarySlots">
                 {selectedSlotLabels.length === 0 ? (
@@ -222,6 +250,27 @@ export default function Book() {
               <div className="summaryTotal">
                 Total: {selectedHours === 0 ? "-" : `${selectedHours} hour${selectedHours === 1 ? "" : "s"}`}
               </div>
+
+              {pricing ? (
+                <>
+                  <div className="summaryDivider" role="separator" aria-hidden="true" />
+                  <div className="summaryLabel">Price Breakdown</div>
+                  <div className="summaryPriceRow">
+                    <div className="summaryPriceLeft">
+                      <div className="summaryPriceName">
+                        {pricing.label} ({selectedHours}h)
+                      </div>
+                      <div className="summaryPriceMeta">{formatMoneyLKR(pricing.rate)}/hour</div>
+                    </div>
+                    <div className="summaryPriceValue">{formatMoneyLKR(totalPrice)}</div>
+                  </div>
+                  <div className="summaryDivider" role="separator" aria-hidden="true" />
+                  <div className="summaryGrandTotalRow">
+                    <div className="summaryGrandTotalLabel">Total</div>
+                    <div className="summaryGrandTotalValue">{formatMoneyLKR(totalPrice)}</div>
+                  </div>
+                </>
+              ) : null}
             </div>
             <button
               className={`btn authBtn ${canConfirm ? "btnPrimary" : "btnDisabled"}`}
