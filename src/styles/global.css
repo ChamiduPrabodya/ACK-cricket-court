@@ -433,10 +433,20 @@ img{ max-width:100%; display:block; }
   margin-bottom: 18px;
 }
 .summaryLabel{ color: #475569; font-weight: 900; margin-bottom: 10px; }
+.summaryDateValue{ font-weight: 900; }
 .summarySlots{ display:grid; gap: 8px; margin-bottom: 10px; }
 .summarySlot{ font-weight: 900; }
 .summaryEmpty{ color: #94a3b8; font-weight: 700; }
 .summaryTotal{ color: #64748b; }
+.summaryDivider{ height: 1px; background: #e5e7eb; margin: 14px 0; }
+.summaryPriceRow{ display:flex; align-items:flex-start; justify-content:space-between; gap: 12px; }
+.summaryPriceLeft{ min-width: 0; }
+.summaryPriceName{ font-weight: 900; }
+.summaryPriceMeta{ color: #64748b; font-weight: 700; margin-top: 4px; font-size: 14px; }
+.summaryPriceValue{ font-weight: 900; white-space: nowrap; }
+.summaryGrandTotalRow{ display:flex; align-items:baseline; justify-content:space-between; gap: 12px; }
+.summaryGrandTotalLabel{ font-weight: 900; font-size: 22px; }
+.summaryGrandTotalValue{ font-weight: 900; font-size: 22px; color: var(--green); white-space: nowrap; }
 .summaryNote{ margin-top: 16px; color: #64748b; text-align:center; }
 .contactCard{ margin-top: 26px; }
 .contactGridSmall{
