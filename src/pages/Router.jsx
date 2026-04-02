@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getUser } from "../services/auth.js";
 import { parseHash } from "../services/hashRoute.js";
 import Book from "./Book.jsx";
+import AdminDashboard from "./AdminDashboard.jsx";
 import Home from "./Home.jsx";
 import Login from "./Login.jsx";
 import MyBookings from "./MyBookings.jsx";
@@ -24,9 +25,15 @@ export default function Router() {
   const element = useMemo(() => {
     const user = getUser();
     const protectedPaths = new Set(["/book", "/my-bookings", "/profile"]);
-    if (protectedPaths.has(path) && !user) {
+    const adminPaths = new Set(["/admin"]);
+    if ((protectedPaths.has(path) || adminPaths.has(path)) && !user) {
       const returnTo = encodeURIComponent(path);
       window.location.hash = `#/login?returnTo=${returnTo}`;
+      return null;
+    }
+
+    if (adminPaths.has(path) && user?.role !== "Admin") {
+      window.location.hash = "#/";
       return null;
     }
 
@@ -34,6 +41,7 @@ export default function Router() {
     if (path === "/login") return <Login returnTo={params.get("returnTo") || "/"} />;
     if (path === "/signup") return <Signup returnTo={params.get("returnTo") || "/"} />;
     if (path === "/book") return <Book />;
+    if (path === "/admin") return <AdminDashboard />;
     if (path === "/my-bookings") return <MyBookings />;
     if (path === "/profile") return <Profile />;
     return <Home />;

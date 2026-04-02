@@ -4,6 +4,7 @@ import { go } from "../services/hashRoute.js";
 import {
   IconBook,
   IconChevronDown,
+  IconGrid,
   IconHome,
   IconList,
   IconLogout,
@@ -66,6 +67,12 @@ export default function Navbar() {
                 <IconBook className="navBtnIcon" />
                 Book Now
               </a>
+              {user?.role === "Admin" ? (
+                <a className={`navLink ${route === "/admin" ? "navLinkActive" : ""}`} href="#/admin">
+                  <IconGrid className="navBtnIcon" />
+                  Admin Dashboard
+                </a>
+              ) : null}
               <a
                 className={`navLink ${route === "/my-bookings" ? "navLinkActive" : ""}`}
                 href="#/my-bookings"
@@ -81,7 +88,7 @@ export default function Navbar() {
                   </span>
                   <span className="userMeta">
                     <span className="userName">{user.name || "User"}</span>
-                    <span className="userRole">User</span>
+                    <span className="userRole">{user.role || "User"}</span>
                   </span>
                   <IconChevronDown className="userChevron" />
                 </summary>

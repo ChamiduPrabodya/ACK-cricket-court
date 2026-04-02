@@ -9,6 +9,12 @@ function nameFromEmail(email) {
   return nice ? nice.replace(/\b\w/g, (c) => c.toUpperCase()) : "User";
 }
 
+function roleFromEmail(email) {
+  const local = String(email || "").split("@")[0] || "";
+  if (local.toLowerCase() === "admin") return "Admin";
+  return "User";
+}
+
 export default function Login({ returnTo = "/" }) {
   return (
     <div className="authPage">
@@ -30,7 +36,13 @@ export default function Login({ returnTo = "/" }) {
                 const email = String(form.get("email") || "").trim();
                 const password = String(form.get("password") || "");
                 if (!email || !password) return;
-                setUser({ id: "user-001", role: "User", name: nameFromEmail(email), email, phone: "" });
+                setUser({
+                  id: "user-001",
+                  role: roleFromEmail(email),
+                  name: nameFromEmail(email),
+                  email,
+                  phone: ""
+                });
                 go(returnTo);
               }}
             >

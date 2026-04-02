@@ -479,6 +479,120 @@ img{ max-width:100%; display:block; }
 .emptyTitle{ font-weight: 900; font-size: 20px; }
 .emptySub{ color: var(--muted); margin-top: 8px; }
 
+/* Admin Dashboard */
+.adminPage{ background: #fff7e8; min-height: 100vh; }
+.adminHero{ padding: 26px 0 8px; }
+.adminHeroInner{ padding: 8px 0 12px; }
+.adminTitle{ margin: 0; font-size: 44px; letter-spacing: -0.02em; }
+.adminSub{ margin: 8px 0 0; color: #64748b; font-weight: 700; }
+.adminBody{ padding: 14px 0 60px; }
+.adminTabs{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 16px;
+  margin: 10px 0 22px;
+}
+.adminTab{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  border:1px solid #e5e7eb;
+  background:#fff;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 900;
+  cursor:pointer;
+}
+.adminTab svg{ width: 20px; height: 20px; }
+.adminTabActive{
+  border-color: rgba(0,166,81,0.95);
+  color: #ff3b00;
+  box-shadow: 0 12px 26px rgba(2, 132, 199, 0.06);
+}
+.adminStats{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.adminStatCard{ padding: 18px 18px; }
+.adminStatTop{ display:flex; align-items:flex-start; justify-content:space-between; gap: 12px; }
+.adminStatLabel{ color: #475569; font-weight: 900; }
+.adminStatValue{ margin-top: 28px; font-size: 44px; font-weight: 900; letter-spacing: -0.02em; }
+.adminStatIcon{ display:grid; place-items:center; width: 36px; height: 36px; border-radius: 12px; }
+.adminStatIconBlue{ color: #0b5cff; }
+.adminStatIconGreen{ color: var(--green); }
+.adminStatIconPurple{ color: #7c3aed; }
+.adminStatIconOrange{ color: #ff3b00; }
+
+.adminFilters{ display:flex; align-items:center; gap: 14px; margin: 14px 0 18px; }
+.pillBtn{
+  border: 1px solid #e5e7eb;
+  background:#fff;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 900;
+  cursor:pointer;
+}
+.pillBtnActive{ background:#fff; border-color:#cbd5e1; }
+.pillBtnActiveGreen{ background: var(--green); color:#fff; border-color: rgba(0,166,81,0.95); }
+
+.adminListCard{ padding: 0; overflow:hidden; }
+.adminList{ display:grid; }
+.adminItem{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  border-top: 1px solid #e5e7eb;
+  background:#fff;
+}
+.adminItem:first-child{ border-top: 0; }
+.adminItemTitle{ font-weight: 900; font-size: 18px; }
+.adminItemSub{ margin-top: 6px; color: #64748b; font-weight: 700; }
+.adminItemMeta{ margin-top: 10px; display:flex; gap: 10px; flex-wrap:wrap; }
+.adminMetaChip{
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(0,166,81,0.10);
+  border:1px solid rgba(0,166,81,0.22);
+  font-weight: 900;
+  white-space:nowrap;
+  color: #0f172a;
+}
+.adminItemSide{ text-align:right; }
+.adminItemTotal{ font-size: 22px; font-weight: 900; }
+.adminItemRate{ margin-top: 6px; color: #64748b; font-weight: 800; }
+.adminDeleteBtn{
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #fecaca;
+  background: #fff;
+  color: #b91c1c;
+  font-weight: 900;
+}
+.adminDeleteBtn:disabled{ opacity: 0.5; cursor:not-allowed; }
+
+.adminEmpty{
+  min-height: 360px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding: 40px 20px;
+  background:#fff;
+}
+.adminEmptyIcon{ color: #94a3b8; }
+.adminEmptyIcon svg{ width: 64px; height: 64px; }
+.adminEmptyTitle{ margin-top: 10px; font-size: 28px; font-weight: 900; }
+.adminEmptySub{ margin-top: 8px; color: #64748b; font-weight: 700; }
+
+.adminComingSoon{ padding: 22px 18px; }
+.adminComingSoonTitle{ font-size: 22px; font-weight: 900; }
+.adminComingSoonSub{ margin-top: 10px; color: #64748b; font-weight: 700; }
+
 @media (max-width: 980px){
   .bookingTitle{ font-size: 42px; }
   .bookingGrid{ grid-template-columns: 1fr; }
@@ -498,6 +612,12 @@ img{ max-width:100%; display:block; }
     gap: 16px;
   }
   .detailActions{ justify-self:start; }
+  .adminStats{ grid-template-columns: 1fr; }
+  .adminTitle{ font-size: 40px; }
+  .adminFilters{ flex-wrap:wrap; }
+  .adminItem{ flex-direction:column; align-items:flex-start; }
+  .adminItemSide{ width: 100%; text-align:left; display:flex; align-items:baseline; justify-content:space-between; gap: 12px; }
+  .adminDeleteBtn{ margin-top: 0; }
 }
 
 /* Toast */
